@@ -1,5 +1,7 @@
 module.exports = function buildMakeChallenge
-()
+(
+    makeChallengeOption
+)
     {
         return function makeChallenge
         (
@@ -59,6 +61,13 @@ module.exports = function buildMakeChallenge
                     }
                 );
 
+                function getBsonOptionList(){
+                    let bsonOptionList = optionList.map(option => {
+                        return makeChallengeOption(option).toBson();
+                    });
+                    return bsonOptionList;
+                }
+
                 function toBson(){
                     return {
                         registerDate : {
@@ -82,7 +91,7 @@ module.exports = function buildMakeChallenge
                         },
                         isActive: isActive,
                         tagList: tagList,
-                        optionList: optionList
+                        optionList: getBsonOptionList()
 
                     }
                 }

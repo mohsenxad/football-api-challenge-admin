@@ -35,6 +35,7 @@ app.post('/challenge/add',
             try 
                 {
                     const challengeInfo = req.body;
+                    console.log(challengeInfo);
                     const challengeId = await challengeServices.addChallenge(
                         challengeInfo
                     );
