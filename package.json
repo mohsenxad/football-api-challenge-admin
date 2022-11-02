@@ -24,10 +24,11 @@
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "https-proxy-agent": "^5.0.1",
+    "mongodb": "^4.11.0",
     "node-fetch": "2.6.7"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
   },
-  "port":6002
+  "port": 6002
 }
