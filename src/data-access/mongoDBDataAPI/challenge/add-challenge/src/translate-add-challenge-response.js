@@ -6,7 +6,6 @@ module.exports = function buildTranslateAddChallengeResponse
             response
         )
             {
-                console.log(response);
                 return response.insertedId;
             }
     }
