@@ -31,18 +31,18 @@ module.exports  = function
             fetch
         );
 
-        // const { getAllEventByUser } = require('./event/get-all-event-by-user')
-        // (
-        //     APPID,
-        //     APIKEY,
-        //     proxyAgent,
-        //     fetch
-        // )
+        const { getAllChallengeByEvent } = require('./challenge/get-all-challenge-by-event')
+        (
+            APPID,
+            APIKEY,
+            proxyAgent,
+            fetch
+        )
 
         return Object.freeze(
             {
                 addChallenge,
-                // getAllEventByUser
+                getAllChallengeByEvent
             }
         );
 

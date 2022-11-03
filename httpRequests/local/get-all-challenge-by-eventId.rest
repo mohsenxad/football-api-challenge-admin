@@ -1,0 +1,2 @@
+GET http://localhost:6002/challenge/getAllByEvent
+eventid:63627887a6f3933e4cd7134e

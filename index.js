@@ -35,13 +35,15 @@ app.post('/challenge/add',
             try 
                 {
                     const challengeInfo = req.body;
-                    console.log(challengeInfo);
+
                     const challengeId = await challengeServices.addChallenge(
                         challengeInfo
                     );
+
                     const result = {
                         challengeId: challengeId
                     };
+
                     sendResult(res, result);
                     
                 }
@@ -51,6 +53,28 @@ app.post('/challenge/add',
                 }
             
 
+        }
+)
+
+app.get('/challenge/getAllByEvent',
+    async (req, res) =>
+        {
+            try 
+                {
+                    const eventId = req.headers.eventid;
+                    const challengeList = await challengeServices.getAllChallengeByEvent(
+                        eventId
+                    );
+                    const result = {
+                        challengeList: challengeList
+                    };
+                    sendResult(res, result);
+                    
+                }
+            catch (error)
+                {
+                    processError(res, error);
+                }
         }
 )
 
