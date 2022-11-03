@@ -1,5 +1,5 @@
 const buildAddChallenge = require('./add-challenge');
-// const buildGetAllEventByUser = require('./get-all-event-by-user');
+const buildGetAllChallengeByEvent = require('./get-all-challenge-by-event');
 
 module.exports = function(
     {
@@ -18,13 +18,13 @@ module.exports = function(
         );
 
         const addChallenge = buildAddChallenge(dataAccess);
-        // const getAllEventByUser = buildGetAllEventByUser(dataAccess);
+        const getAllChallengeByEvent = buildGetAllChallengeByEvent(dataAccess);
         
 
         const services =  Object.freeze(
             {
                 addChallenge,
-                // getAllEventByUser
+                getAllChallengeByEvent
             }
         );
 
