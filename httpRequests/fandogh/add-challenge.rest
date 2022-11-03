@@ -2,16 +2,16 @@ POST https://football-api-challenge-admin-mohsenxad.fandogh.cloud/challenge/add
 Content-Type: application/json
 
 {
-  "event": "635d2fd1911e0aa78488d4c0",
-  "title":"نتیجه مسابقه",
+  "event": "63627a551227fc3ff8ecf73c",
+  "title":"برنده مسابقه",
   "startDateTime":"1667048780939",
   "endDateTime":"1667048780990",
   "optionList":[
         {
-        "title":"برد تیم اول"
+        "title":"کامرون"
         },
         {
-        "title":"برد تیم دوم"
+        "title":"برزیل"
         },
         {
         "title":"مساوی"
