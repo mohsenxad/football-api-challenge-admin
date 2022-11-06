@@ -39,10 +39,30 @@ module.exports  = function
             fetch
         )
 
+        
+        const { getChallengeById } = require('./challenge/get-challenge-by-id')
+        (
+            APPID,
+            APIKEY,
+            proxyAgent,
+            fetch
+        )
+
+        
+        const { setChallengeChannelMessageId } = require('./challenge/set-challenge-channel-message-id')
+        (
+            APPID,
+            APIKEY,
+            proxyAgent,
+            fetch
+        )
+
         return Object.freeze(
             {
                 addChallenge,
-                getAllChallengeByEvent
+                getAllChallengeByEvent,
+                getChallengeById,
+                setChallengeChannelMessageId
             }
         );
 

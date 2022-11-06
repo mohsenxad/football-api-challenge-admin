@@ -78,6 +78,51 @@ app.get('/challenge/getAllByEvent',
         }
 )
 
+app.post('/challenge/postOnTelegram',
+    async (req,res) => 
+        {
+            try 
+                {
+                    const challengeId = req.body.challengeId;
+                    if(
+                        challengeId
+                    )
+                        {
+                            const postChallengeResult = await challengeServices.postChallengeOnTelegramChannel(
+                                challengeId
+                            );
+                
+                            const result = {
+                                postChallengeResult: postChallengeResult 
+                            };
+                
+                            console.log(result);
+                            sendResult(
+                                res,
+                                result
+                            );
+                        }
+                    else
+                        {
+                            const InvalidParametersError = new Error("Invalid Parameters");
+                            processError(
+                                res,
+                                InvalidParametersError
+                            );
+                        }   
+                }
+            catch (error) 
+                {
+                    processError(
+                        res,
+                        error
+                    );
+                }
+            
+
+        }
+)
+
 function sendResult
 (
     res,
