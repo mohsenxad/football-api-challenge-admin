@@ -26,11 +26,20 @@ module.exports = function(
         );
 
         
+        const { editMessageCaption }  = require('./edit-message-caption')(
+            BOT_TOKEN,
+            proxyAgent,
+            fetch,
+            generateInlineKeyboardMarkup
+        );
+
+        
 
         const services = Object.freeze(
             {
                 sendMessage,
-                sendPhoto
+                sendPhoto,
+                editMessageCaption
             }
         )
 

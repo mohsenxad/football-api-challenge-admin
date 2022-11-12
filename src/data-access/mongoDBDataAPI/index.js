@@ -31,6 +31,24 @@ module.exports  = function
             fetch
         );
 
+        
+        const { updateChallenge } = require('./challenge/update-challenge')
+        (
+            APPID,
+            APIKEY,
+            proxyAgent,
+            fetch
+        );
+
+        
+        const { deleteChallengeById } = require('./challenge/delete-challenge-by-id')
+        (
+            APPID,
+            APIKEY,
+            proxyAgent,
+            fetch
+        );
+
         const { getAllChallengeByEvent } = require('./challenge/get-all-challenge-by-event')
         (
             APPID,
@@ -57,12 +75,61 @@ module.exports  = function
             fetch
         )
 
+        
+        const { setChallengeResult } = require('./challenge/set-challenge-result')
+        (
+            APPID,
+            APIKEY,
+            proxyAgent,
+            fetch
+        )
+
+        const { getEventById } = require('./event/get-event-by-id')
+        (
+            APPID,
+            APIKEY,
+            proxyAgent,
+            fetch
+        )
+
+        const { getAllUserChallengeByChallengeId } = require('./user-challenge/get-all-user-challenge-by-challengeId')
+        (
+            APPID,
+            APIKEY,
+            proxyAgent,
+            fetch
+        )
+
+        const { getAllUserChallengeByChallengeIdAndChallengeOptionId } = require('./user-challenge/get-all-user-challenge-by-challengeId-and-challengeOptionId')
+        (
+            APPID,
+            APIKEY,
+            proxyAgent,
+            fetch
+        )
+
+        const { getAllUserByUserIdList } = require('./user/get-all-user-by-userIdList')
+        (
+            APPID,
+            APIKEY,
+            proxyAgent,
+            fetch
+        )
+
+        
         return Object.freeze(
             {
                 addChallenge,
+                updateChallenge,
+                deleteChallengeById,
                 getAllChallengeByEvent,
                 getChallengeById,
-                setChallengeChannelMessageId
+                setChallengeChannelMessageId,
+                setChallengeResult,
+                getEventById,
+                getAllUserChallengeByChallengeId,
+                getAllUserChallengeByChallengeIdAndChallengeOptionId,
+                getAllUserByUserIdList
             }
         );
 

@@ -5,7 +5,6 @@ const eventServices = require('./use-cases')(
     },
     process.env.PROXY_URL,
     {
-        CHALNNEL_ID :process.env.CHALNNEL_ID,
         BOT_TOKEN :process.env.BOT_TOKEN
     }
 );

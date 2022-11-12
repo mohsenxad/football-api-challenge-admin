@@ -1,8 +1,7 @@
 module.exports = function buildPostChallengeOnTelegramChannel
 (
     dataAccess,
-    providerServices,
-    CHALNNEL_ID
+    providerServices
 )
     {
         return async function postChallengeOnTelegramChannel
@@ -16,30 +15,52 @@ module.exports = function buildPostChallengeOnTelegramChannel
 
                 console.log(challenge);
 
-                const message = `Challenge is ${challenge.title}`
-                // const postToChannelMessageId = await providerServices.telegramBot.sendMessage(
-                //     CHALNNEL_ID,
-                //     message,
-                //     {}
-                // )
+                const foundEvent = await dataAccess.dataApi.getEventById(
+                    challenge.event
+                );
 
-                const postToChannelMessageId = await providerServices.telegramBot.sendPhoto(
-                    CHALNNEL_ID,
-                    'https://cdn.fecharge.ir/tdlte.jpg',
-                    message,
-                    challenge.optionList
+                console.log(foundEvent);
+
+                if
+                (
+                    foundEvent &&
+                    foundEvent.telegramGroupId
                 )
+                    {
+                        const message = challenge.description;
+                        // const postToChannelMessageId = await providerServices.telegramBot.sendMessage(
+                        //     CHALNNEL_ID,
+                        //     message,
+                        //     {}
+                        // )
 
-                console.log(postToChannelMessageId);
+                        const postToChannelMessageId = await providerServices.telegramBot.sendPhoto(
+                            parseInt(foundEvent.telegramGroupId),
+                            `https://football-storage-mohsenxad.fandogh.cloud/challenge?challengeId=${challenge._id}`,
+                            message,
+                            challenge.optionList
+                        )
 
-                const setChallengeChannelMessageIdResult = await dataAccess.dataApi.setChallengeChannelMessageId(
-                    challengeId,
-                    postToChannelMessageId
-                )
+                        console.log(postToChannelMessageId);
 
-                console.log(setChallengeChannelMessageIdResult);
+                        const setChallengeChannelMessageIdResult = await dataAccess.dataApi.setChallengeChannelMessageId(
+                            challengeId,
+                            postToChannelMessageId
+                        )
 
-                return setChallengeChannelMessageIdResult;
+                        console.log(setChallengeChannelMessageIdResult);
+
+                        return setChallengeChannelMessageIdResult;
+                    }
+                else
+                    {
+                        const noGroupCreatedForThisEventError = new Error(
+                            `No Group Assigned For Event ${foundEvent.title}`
+                        )
+                        throw noGroupCreatedForThisEventError;
+                    }
+
+                
 
             }
     }

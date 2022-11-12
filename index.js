@@ -10,7 +10,8 @@ app.use(bodyParser.json())
 app.use(function(req, res, next) 
     {
         res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, token, eventid");
+        res.header("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, token, eventid, challengeid");
         next();
     }
 );
@@ -34,7 +35,7 @@ app.post('/challenge/add',
         {
             try 
                 {
-                    const challengeInfo = req.body;
+                    const challengeInfo = req.body.challenge;
 
                     const challengeId = await challengeServices.addChallenge(
                         challengeInfo
@@ -55,6 +56,109 @@ app.post('/challenge/add',
 
         }
 )
+
+app.get('/challenge/get',
+    async (req, res) =>
+        {
+            try 
+                {
+                    const challengeId = req.headers.challengeid;
+                    const challenge = await challengeServices.getChallengeById(
+                        challengeId
+                    );
+                    const result = {
+                        challenge: challenge
+                    };
+                    sendResult(
+                        res,
+                        result
+                    );
+                    
+                }
+            catch (error)
+                {
+                    processError(
+                        res,
+                        error
+                    );
+                }
+        }
+)
+
+app.post('/challenge/update',
+    async (req,res) => 
+        {
+            try 
+                {
+                    const challengeId = req.body.challengeId;
+                    const challengeInfo = req.body.challenge
+                    if(
+                        challengeId,
+                        challengeInfo
+                    )
+                        {
+                            const updateChallengeResult = await challengeServices.updateChallenge(
+                                challengeId,
+                                challengeInfo
+                            );
+                
+                            const result = {
+                                updateChallengeResult:updateChallengeResult 
+                            };
+                
+                            console.log(result);
+                            sendResult(
+                                res,
+                                result
+                            );
+                        }
+                    else
+                        {
+                            const InvalidParametersError = new Error("Invalid Parameters");
+                            processError(
+                                res,
+                                InvalidParametersError
+                            );
+                        }   
+                }
+            catch (error) 
+                {
+                    processError(
+                        res,
+                        error
+                    );
+                }
+            
+
+        }
+)
+
+app.delete('/challenge/delete',
+    async (req, res) => 
+        {
+            try 
+                {
+                    const challengeId = req.headers.challengeid;
+                    const deleteResult = await challengeServices.deleteChallengeById(
+                        challengeId
+                    )
+
+                    const result = {
+                        deleteResult: deleteResult
+                    };
+    
+                    sendResult(
+                        res,
+                        result
+                    );
+                }
+            catch (error)
+                {
+                    
+                }
+        }
+)
+
 
 app.get('/challenge/getAllByEvent',
     async (req, res) =>
@@ -94,6 +198,54 @@ app.post('/challenge/postOnTelegram',
                 
                             const result = {
                                 postChallengeResult: postChallengeResult 
+                            };
+                
+                            console.log(result);
+                            sendResult(
+                                res,
+                                result
+                            );
+                        }
+                    else
+                        {
+                            const InvalidParametersError = new Error("Invalid Parameters");
+                            processError(
+                                res,
+                                InvalidParametersError
+                            );
+                        }   
+                }
+            catch (error) 
+                {
+                    processError(
+                        res,
+                        error
+                    );
+                }
+            
+
+        }
+)
+
+app.post('/challenge/setResultOption',
+    async (req,res) => 
+        {
+            try 
+                {
+                    const challengeId = req.body.challengeId;
+                    const challengeOptionId = req.body.challengeOptionId;
+                    if(
+                        challengeId &&
+                        challengeOptionId
+                    )
+                        {
+                            const setChallengeResultResult = await challengeServices.setChallengeResult(
+                                challengeId,
+                                challengeOptionId
+                            );
+                
+                            const result = {
+                                setChallengeResultResult: setChallengeResultResult 
                             };
                 
                             console.log(result);

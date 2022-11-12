@@ -33,7 +33,6 @@ module.exports = function buildSendMessage
         
                 const response = await request.json();
 
-                console.log(response);
 
                 const sendMessageResponse = translateSendMessageResponse(response);
 

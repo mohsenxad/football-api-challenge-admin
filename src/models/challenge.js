@@ -9,11 +9,14 @@ module.exports = function buildMakeChallenge
                 registerDate = Date.now(),
                 event,
                 title,
+                description,
                 startDateTime,
                 endDateTime,
                 isActive = false,
                 tagList,
                 optionList,
+                resultOption,
+                channelMessageId
             }
         )
             {
@@ -52,11 +55,14 @@ module.exports = function buildMakeChallenge
                         getRegisterDate: () => registerDate,
                         getEvent: () => event,
                         getTitle: () => title,
+                        getDescription: () => description,
                         getStartDateTime: () => startDateTime,
                         getEndDateTime: () => endDateTime,
                         getIsActive: () => isActive,
                         getTagList: () => tagList,
                         getOptionList: () => optionList,
+                        getResultOption: ()=> resultOption,
+                        getChannelMessageId: () => channelMessageId,
                         toBson: toBson,
                     }
                 );
@@ -79,6 +85,7 @@ module.exports = function buildMakeChallenge
                             "$oid": event,
                         },
                         title: title,
+                        description:description,
                         startDateTime : {
                             "$date": {
                                 "$numberLong": startDateTime.toString()
@@ -91,6 +98,7 @@ module.exports = function buildMakeChallenge
                         },
                         isActive: isActive,
                         tagList: tagList,
+                        channelMessageId: channelMessageId,
                         optionList: getBsonOptionList()
 
                     }

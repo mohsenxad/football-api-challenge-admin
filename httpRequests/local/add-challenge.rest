@@ -2,20 +2,22 @@ POST http://localhost:6002/challenge/add
 Content-Type: application/json
 
 {
-  "event": "635d2fd1911e0aa78488d4c0",
-  "title":"نتیجه مسابقه",
-  "startDateTime":"1667048780939",
-  "endDateTime":"1667048780990",
-  "optionList":[
-        {
-        "title":"برد تیم اول"
-        },
-        {
-        "title":"برد تیم دوم"
-        },
-        {
-        "title":"مساوی"
-        }
-    ]
+  challenge:{
+    "event": "635d2fd1911e0aa78488d4c0",
+    "title":"نتیجه مسابقه",
+    "startDateTime":"1667048780939",
+    "endDateTime":"1667048780990",
+    "optionList":[
+          {
+          "title":"برد تیم اول"
+          },
+          {
+          "title":"برد تیم دوم"
+          },
+          {
+          "title":"مساوی"
+          }
+      ]
+  }
   
 }

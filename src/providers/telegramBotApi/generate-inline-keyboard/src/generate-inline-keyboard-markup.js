@@ -7,18 +7,25 @@ module.exports = function buildGenerateInlineKeyboardMarkup
         )
             {
                 let inline_keyboard = [];
-                inlineKeyboardButtonList.forEach(inlineKeyboardButtonItem => 
+                if
+                (
+                    inlineKeyboardButtonList.length > 0
+                )
                     {
-                        const inlineKeyboardButton = [
+                        inlineKeyboardButtonList.forEach(inlineKeyboardButtonItem => 
                             {
-                                text : inlineKeyboardButtonItem.title,
-                                callback_data: inlineKeyboardButtonItem._id,
+                                const inlineKeyboardButton = [
+                                    {
+                                        text : inlineKeyboardButtonItem.title,
+                                        callback_data: inlineKeyboardButtonItem._id,
+                                    }
+                                ];
+                                inline_keyboard.push(inlineKeyboardButton);
+                                
                             }
-                        ];
-                        inline_keyboard.push(inlineKeyboardButton);
-                        
+                        );
                     }
-                );
+                
                 const inlineKeyboardMarkup = {
                     inline_keyboard: inline_keyboard
                 }
