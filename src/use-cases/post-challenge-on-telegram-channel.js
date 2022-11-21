@@ -36,7 +36,7 @@ module.exports = function buildPostChallengeOnTelegramChannel
 
                         const postToChannelMessageId = await providerServices.telegramBot.sendPhoto(
                             parseInt(foundEvent.telegramGroupId),
-                            `https://football-storage-mohsenxad.fandogh.cloud/challenge?challengeId=${challenge._id}`,
+                            `https://football-storage-mohsenxad.fandogh.cloud/challenge?challengeId=${challenge._id}&t=${Date.now()}`,
                             message,
                             challenge.optionList
                         )

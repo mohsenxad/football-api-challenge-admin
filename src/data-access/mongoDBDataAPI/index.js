@@ -117,6 +117,15 @@ module.exports  = function
         )
 
         
+        const { increaseUserCreditByUserIdList } = require('./user/increase-user-credit-by-userIdList')
+        (
+            APPID,
+            APIKEY,
+            proxyAgent,
+            fetch
+        )
+
+        
         return Object.freeze(
             {
                 addChallenge,
@@ -129,7 +138,8 @@ module.exports  = function
                 getEventById,
                 getAllUserChallengeByChallengeId,
                 getAllUserChallengeByChallengeIdAndChallengeOptionId,
-                getAllUserByUserIdList
+                getAllUserByUserIdList,
+                increaseUserCreditByUserIdList
             }
         );
 

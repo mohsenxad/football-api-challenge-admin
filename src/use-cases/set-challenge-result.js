@@ -69,11 +69,11 @@ module.exports = function buildSetChallengeResult
 
                                 console.log(editGroupPostResult);
 
-                                calculateChallengeScore(
+                                await calculateChallengeScore(
                                     foundChallenge._id
                                 )
 
-                                postChallengeWinnerOnGroup(
+                                await postChallengeWinnerOnGroup(
                                     foundChallenge._id
                                 )
                                 

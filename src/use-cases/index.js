@@ -33,7 +33,10 @@ module.exports = function(
 
         const addChallenge = buildAddChallenge(dataAccess);
         const getChallengeById = buildGetChallengeById(dataAccess);
-        const updateChallenge = buildUpdateChallenge(dataAccess);
+        const updateChallenge = buildUpdateChallenge(
+            dataAccess,
+            providerServices
+        );
         const deleteChallengeById = buildDeleteChallengeById(dataAccess);
         
         const getAllChallengeByEvent = buildGetAllChallengeByEvent(dataAccess);

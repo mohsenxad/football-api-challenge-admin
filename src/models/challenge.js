@@ -16,7 +16,9 @@ module.exports = function buildMakeChallenge
                 tagList,
                 optionList,
                 resultOption,
-                channelMessageId
+                channelMessageId,
+                cost,
+                revenue
             }
         )
             {
@@ -35,6 +37,14 @@ module.exports = function buildMakeChallenge
 
                 if (!endDateTime) {
                     throw new Error('Event must have End Date Time.')
+                }
+
+                if (!cost) {
+                    throw new Error('Event must have Cost.')
+                }
+
+                if (!revenue) {
+                    throw new Error('Event must have Revenue.')
                 }
 
                 
@@ -63,6 +73,8 @@ module.exports = function buildMakeChallenge
                         getOptionList: () => optionList,
                         getResultOption: ()=> resultOption,
                         getChannelMessageId: () => channelMessageId,
+                        getCost: () => cost,
+                        getRevenue: () => revenue,
                         toBson: toBson,
                     }
                 );
@@ -98,7 +110,8 @@ module.exports = function buildMakeChallenge
                         },
                         isActive: isActive,
                         tagList: tagList,
-                        channelMessageId: channelMessageId,
+                        cost: cost,
+                        revenue: revenue,
                         optionList: getBsonOptionList()
 
                     }

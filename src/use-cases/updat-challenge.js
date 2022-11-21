@@ -2,7 +2,8 @@ const models = require('../models');
 
 module.exports = function buildUpdateChallenge
 (
-    dataAccess
+    dataAccess,
+    providerServices
 )
     {
         return async function updateChallenge
@@ -21,7 +22,33 @@ module.exports = function buildUpdateChallenge
                     challenge.getChannelMessageId()
                 )
                     {
-                        //update Post On channel
+                        const foundEvent = await dataAccess.dataApi.getEventById(
+                            challenge.getEvent()
+                        );
+                        if
+                        (
+                            challenge.getIsActive() == false
+                        )
+                            {
+                                
+                                const caption =  `🥹زمان شرکت در چالش به پایان رسید\n🤞 منتظر نتایج باشید`
+                                const editGroupPostResult = await providerServices.telegramBot.editMessageCaption(
+                                    parseInt(foundEvent.telegramGroupId),
+                                    challenge.getChannelMessageId(),
+                                    caption,
+                                    []
+                                );
+                            }
+                        else
+                            {
+                                const caption =  challenge.getDescription();
+                                const editGroupPostResult = await providerServices.telegramBot.editMessageCaption(
+                                    parseInt(foundEvent.telegramGroupId),
+                                    challenge.getChannelMessageId(),
+                                    caption,
+                                    challenge.getOptionList()
+                                );
+                            }
                     }
                 return updateChallengeResult;
             }

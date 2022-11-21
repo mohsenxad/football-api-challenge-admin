@@ -37,6 +37,14 @@ module.exports = function buildCalculateChallengeScore
 
                                 console.log(winingUserChallengeUserIdList);
 
+                                const updateWiningUserCreditResult = await dataAccess.dataApi.increaseUserCreditByUserIdList(
+                                    winingUserChallengeUserIdList,
+                                    foundChallenge.revenue
+                                );
+
+                                console.log('updateWiningUserCreditResult');
+                                console.log(updateWiningUserCreditResult);
+
                                 const winingUserList = await dataAccess.dataApi.getAllUserByUserIdList(
                                     winingUserChallengeUserIdList
                                 )
